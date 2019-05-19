@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto|Pattaya');
+#menu {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  background-color: black;
+}
+#menu a,
+#menu form {
+  display: flex;
+  align-items: center;
+}
+#menu > a {
+  color: white;
+  padding: 0 30px;
+  vertical-align: middle;
+  transition: .3s ease;
+}
+#menu > a:hover {
+  background-color: gray;
+}
+#menu .logo {
+  font-family: Pattaya;
+  font-size: 2.5em;
+}
+#menu button {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top: 1px solid white;
+  border-right: 1px solid white;
+  border-bottom: 1px solid white;
+  color: white;
+}
+.section-title {
+  text-align: center;
+  margin: 20px 0px;
+}
+.banner {
+  width: 100vw;
+  height: 500px;
+  background: url(../../img/tbanner.jpg);
+  background-size: cover;
+}
+.card {
+  margin-bottom: 5px;
+  box-shadow: 3px 3px 5px lightgray;
+}
+ul {
+  list-style: none;
+}
+.title-row {
+  text-align: center;
+  margin: 10px 0px;
+}
+.fieldset {
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid lightgray;
+}
+a.card {
+  color: black;
+}
+.breadcrumbs li {
+  margin-top: 10px;
+  display: inline-block;
+}
+.breadcrumbs li:not(:first-child)::before {
+  content: " / ";
+}
+img {
+  width: 100%;
+}
+.price {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+i {
+  margin: 0 .5rem;
+}
+.icon-btn s {
+  font-size: 1.8rem;
+}
+.black {
+  color: black;
+}
+.crud-icon {
+  color: black;
+  font-size: 1.2rem;
+  padding: 10px;
+}
+.-slight-margin {
+  margin: 0 10px;
+}
