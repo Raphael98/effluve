@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 public class Header extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/header.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/header.jsp");
 		rd.forward(request, response);
 	}
 }

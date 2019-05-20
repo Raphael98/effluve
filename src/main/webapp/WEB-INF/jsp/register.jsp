@@ -24,7 +24,7 @@
             </div>
         </section>
         <section class="row">
-            <form class="col-xl-8 offset-xl-2">
+            <form class="col-xl-8 offset-xl-2" method="POST" action="userRegister">
                 <h1>Cadastro</h1>
                 <div class="row form-group">
                     <div class="col">

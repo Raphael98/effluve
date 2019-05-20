@@ -10,11 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/hello")
-public class Register extends HttpServlet{
+public class Hello extends HttpServlet {
 	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response) 
-			throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/index.jsp");
-		rd.forward(request,response);
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		RequestDispatcher dispatch = req.getRequestDispatcher("WEB-INF/jsp/index.jsp");
+		dispatch.forward(req, resp);
 	}
 }
