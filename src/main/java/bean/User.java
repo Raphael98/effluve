@@ -6,18 +6,39 @@ import java.sql.SQLException;
 
 import factory.ConnectionFactory;
 
-public class User {
+public class User extends Bean {
 	private String name;
 	private String password;
 	private String email;
+	private String cep;
+	private String number;
 	
 	public User() {}
 	
-	public User(String email, String name, String password) {
+	public User(String email, String name, String password, String cep, String number) {
 		this.email = email;
 		this.name = name;
 		this.password = password;
+		this.cep = cep;
+		this.number = number;
 	}
+	
+	public String getCep() {
+		return cep;
+	}
+
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
+
+	public String getNumber() {
+		return number;
+	}
+
+	public void setNumber(String number) {
+		this.number = number;
+	}
+	
 	
 	public String getName() {
 		return name;
@@ -33,5 +54,9 @@ public class User {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public String getPassword() {
+		return this.password;
 	}
 }

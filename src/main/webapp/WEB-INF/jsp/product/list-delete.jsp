@@ -34,7 +34,7 @@
                 </div>
                 <button type="submit" class="btn btn-dark mb-2">Buscar</button>
             </form>
-            <a href="new-product.html" class="btn btn-dark mb-2 -slight-margin"><i class="fa fa-plus"></i> Novo</a>
+            <a href="createProduct" class="btn btn-dark mb-2 -slight-margin"><i class="fa fa-plus"></i> Novo</a>
         </section>
         <section class="row">
             <table class="table table-striped">

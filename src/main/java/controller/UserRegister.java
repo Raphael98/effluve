@@ -22,7 +22,8 @@ public class UserRegister extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		new UserDAO().add(req.getParameter("email"),req.getParameter("name"), req.getParameter("password"));
+		User user = new User(req.getParameter("email"),req.getParameter("name"), req.getParameter("password"), req.getParameter("cep"),req.getParameter("number"));
+		new UserDAO().add(user);
 		RequestDispatcher dispatch = req.getRequestDispatcher("/WEB-INF/jsp/register.jsp");
 		dispatch.forward(req, resp);
 	}

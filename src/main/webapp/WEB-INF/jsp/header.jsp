@@ -17,8 +17,9 @@
         <i class="fa fa-user"></i> Olá, Raphael
     </a>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-        <a class="dropdown-item" href="list-delete-product.html"><i class="fa fa-wrench"></i> Gerenciar produtos</a>
+        <a class="dropdown-item" href="productManaging"><i class="fa fa-wrench"></i> Gerenciar produtos</a>
         <a class="dropdown-item" href="my-orders.html"><i class="fa fa-list"></i> Meus pedidos</a>
         <a class="dropdown-item" href="settings.html"><i class="fa fa-gear"></i> Meus dados</a>
         <a class="dropdown-item" href="#"><i class="fa fa-sign-out"></i> Sair</a>
     </div>
+    
