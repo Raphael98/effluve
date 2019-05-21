@@ -29,12 +29,12 @@
                 <div class="row form-group">
                     <div class="col">
                         <label for="name">Nome</label>
-                        <input type="name" id="name" class="form-control">
+                        <input type="name" name="name" id="name" class="form-control">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="description">DescriÃ§Ã£o<small> (opcional)</small></label>
-                    <textarea id="description" class="form-control"></textarea>
+                    <label for="description">Descrição<small> (opcional)</small></label>
+                    <textarea id="description" name="description" class="form-control"></textarea>
                 </div>
                 <input type="submit" class="btn btn-dark" value="Cadastrar">
                 <a href="productManaging" class="-slight-margin">Voltar</a>
