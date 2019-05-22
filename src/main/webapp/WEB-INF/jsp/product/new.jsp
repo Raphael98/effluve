@@ -1,5 +1,6 @@
 <%@ page import="java.util.List" %>
 <%@ page import="bean.Brand" %>
+<%@ page import="bean.Gender" %>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -28,6 +29,11 @@
         <section class="row">
             <form class="col-xl-8 offset-xl-2" method="POST" action="createProduct">
                 <h1>Novo produto</h1>
+                 <% if(request.getAttribute("success") != null){ %>
+	                <div class="alert alert-success" role="alert">
+	  					Cadastrado com sucesso
+					</div>
+				<% } %>
                 <div class="row form-group">
                     <div class="col">
                         <label for="name">Nome</label>
@@ -41,9 +47,13 @@
                     </div>
                      <div class="col">
                         <label for="price">Gênero</label>
+                        <jsp:useBean id="genderDao" class="dao.GenderDAO"/>
+                        <% List<Gender> genders = genderDao.getAll(); %>
                         <select id="gender" name="gender" class="form-control">
                         	<option>-- SELECIONE --</option>
-                        	<option>M</option>
+                        	<% for(Gender gender : genders){ %>
+                        		<option value="<%= gender.getId() %>"><%= gender.getName() %></option>
+                        	<% } %>
                         </select>
                     </div>
                     <div class="col">

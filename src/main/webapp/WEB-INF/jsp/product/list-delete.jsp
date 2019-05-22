@@ -49,6 +49,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                	<jsp:useBean id="productDao" class="dao.GenderDAO"/>
                     <tr>
                         <th scope="row">1</th>
                         <td>1 Million</td>

@@ -32,6 +32,7 @@ public class BrandDAO extends DAO {
 			if(!rs.next()) {
 				throw new NotFound();
 			}
+			brand.setId(rs.getInt("id"));
 			brand.setName(rs.getString("name"));
 			brand.setDescription(rs.getString("Description"));
 		} catch (SQLException e) {
