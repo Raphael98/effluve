@@ -3,6 +3,8 @@ package dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.omg.CosNaming.NamingContextPackage.NotFound;
 
@@ -24,7 +26,7 @@ public class BrandDAO extends DAO {
 	
 	public Brand get(int id) throws NotFound {
 		Brand brand = new Brand();
-		String sql = String.format("SELECT * FROM %s; where id = %1$d", this.table, id);
+		String sql = String.format("SELECT * FROM %s where id = %s", this.table, id);
 		try(PreparedStatement stmt = conn.prepareStatement(sql)){
 			ResultSet rs = stmt.executeQuery();
 			if(!rs.next()) {
@@ -42,5 +44,29 @@ public class BrandDAO extends DAO {
 			}
 		}
 		return brand;
+	}
+	
+	public List<Brand> getAll() {
+		List<Brand> brands = new ArrayList<>();
+		String sql = String.format("SELECT * FROM %s;", this.table);
+		try(PreparedStatement stmt = conn.prepareStatement(sql)){
+			ResultSet rs = stmt.executeQuery();
+			while(rs.next()) {
+				Brand brand = new Brand();
+				brand.setId(rs.getInt("id"));
+				brand.setName(rs.getString("name"));
+				brand.setDescription(rs.getString("Description"));
+				brands.add(brand);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return brands;
 	}
 }

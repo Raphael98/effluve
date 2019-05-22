@@ -23,6 +23,7 @@ public class Create extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Brand brand = new Brand(req.getParameter("name"), req.getParameter("description"));
 		new BrandDAO().add(brand);
+		req.setAttribute("success", true);
 		req.getRequestDispatcher("/WEB-INF/jsp/brand/new.jsp").forward(req, resp);
 	}
 }

@@ -1,3 +1,5 @@
+<%@ page import="java.util.List" %>
+<%@ page import="bean.Brand" %>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -24,31 +26,41 @@
             </div>
         </section>
         <section class="row">
-            <form class="col-xl-8 offset-xl-2">
+            <form class="col-xl-8 offset-xl-2" method="POST" action="createProduct">
                 <h1>Novo produto</h1>
                 <div class="row form-group">
                     <div class="col">
                         <label for="name">Nome</label>
-                        <input type="name" id="name" class="form-control">
+                        <input type="name" id="name" name="name" class="form-control">
                     </div>
                 </div>
                 <div class="row form-group">
                     <div class="col">
-                        <label for="price">PreÃ§o</label>
-                        <input type="price" id="price" class="form-control">
+                        <label for="price">Preço</label>
+                        <input type="text" id="price" name="price" class="form-control">
+                    </div>
+                     <div class="col">
+                        <label for="price">Gênero</label>
+                        <select id="gender" name="gender" class="form-control">
+                        	<option>-- SELECIONE --</option>
+                        	<option>M</option>
+                        </select>
                     </div>
                     <div class="col">
                         <label for="brand">Marca</label>
-                        <select id="brand" name="brand" class="form-control">
+                        <jsp:useBean id="dao" class="dao.BrandDAO"/>
+                        <select id="brand" name="brand" name="brand" class="form-control">
                             <option> -- SELECIONE --</option>
-                            <option>Paco Rabanne</option>
-                            <option>Azzaro</option>
+                            <% List<Brand> brands = dao.getAll(); %>
+                            <% for(Brand brand : brands){ %>
+	                            <option value="<%= brand.getId() %>"><%= brand.getName() %></option>
+                            <% } %>
                         </select>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="description">Descricao</label>
-                    <textarea id="description" class="form-control"></textarea>
+                    <textarea id="description" name="description" class="form-control"></textarea>
                 </div>
                 <input type="submit" class="btn btn-dark" value="Cadastrar">
                 <a href="list-delete-product.html" class="-slight-margin">Voltar</a>

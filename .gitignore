@@ -2,4 +2,4 @@
 /target/
 .classpath
 .project
-credentials
+src/main/java/factory/Credentials.java

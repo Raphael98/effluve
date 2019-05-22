@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="assets/style/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/style/css/style.css">
     <link rel="stylesheet" href="assets/style/css/font-awesome.min.css">
-    <title>Effluve: Novo marca</title>
+    <title>Effluve: Nova marca</title>
 </head>
 
 <body>
@@ -25,7 +25,12 @@
         </section>
         <section class="row">
             <form class="col-xl-8 offset-xl-2" method="POST" action="createBrand">
-                <h1>Novo marca</h1>
+                <h1>Nova marca</h1>
+                <% if(request.getAttribute("success") != null){ %>
+	                <div class="alert alert-success" role="alert">
+	  					Cadastrado com sucesso
+					</div>
+				<% } %>
                 <div class="row form-group">
                     <div class="col">
                         <label for="name">Nome</label>
@@ -33,7 +38,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="description">Descrição<small> (opcional)</small></label>
+                    <label for="description">DescriÃ§Ã£o <small>(opcional)</small></label>
                     <textarea id="description" name="description" class="form-control"></textarea>
                 </div>
                 <input type="submit" class="btn btn-dark" value="Cadastrar">
