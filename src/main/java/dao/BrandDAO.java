@@ -37,13 +37,7 @@ public class BrandDAO extends DAO {
 			brand.setDescription(rs.getString("Description"));
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
+		} 
 		return brand;
 	}
 	
@@ -69,5 +63,15 @@ public class BrandDAO extends DAO {
 			}
 		}
 		return brands;
+	}
+	
+	public void delete(Brand brand) {
+		String sql = String.format("DELETE FROM %s WHERE id = ?", this.table);
+		try(PreparedStatement stmt = conn.prepareStatement(sql)){
+			stmt.setInt(1, brand.getId());
+			stmt.execute();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }

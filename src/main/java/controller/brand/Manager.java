@@ -12,6 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 public class Manager extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("/WEB-INF/jsp/product/list-delete.jsp").forward(req, resp);
+		req.getRequestDispatcher("/WEB-INF/jsp/brand/list-delete.jsp").forward(req, resp);
 	}
 }

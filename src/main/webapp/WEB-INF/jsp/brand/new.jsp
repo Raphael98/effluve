@@ -42,7 +42,7 @@
                     <textarea id="description" name="description" class="form-control"></textarea>
                 </div>
                 <input type="submit" class="btn btn-dark" value="Cadastrar">
-                <a href="productManaging" class="-slight-margin">Voltar</a>
+                <a href="brandManaging" class="-slight-margin">Voltar</a>
             </form>
         </section>
     </main>

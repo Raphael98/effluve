@@ -1,3 +1,5 @@
+<%@ page import="java.util.List" %>
+<%@ page import="bean.Product" %>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -49,23 +51,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                	<jsp:useBean id="productDao" class="dao.GenderDAO"/>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>1 Million</td>
-                        <td>R$ 450</td>
-                        <td>Paco Rabanne</td>
-                        <td><a href="edit-product.html" class="crud-icon"><i class="fa fa-edit"></i></a></td>
-                        <td><a href="#" class="crud-icon"><i class="fa fa-times"></i></a></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>212 NYC</td>
-                        <td>R$ 380</td>
-                        <td>Paco Rabanne</td>
-                        <td><a href="edit-product.html" class="crud-icon"><i class="fa fa-edit"></i></a></td>
-                        <td><a href="#" class="crud-icon"><i class="fa fa-times"></i></a></td>
-                    </tr>
+                	<jsp:useBean id="productDao" class="dao.ProductDAO"/>
+                	<% List<Product> products = productDao.getAll(); %>
+                	<%for(Product product : products){ %>
+	                    <tr>
+	                        <th scope="row">1</th>
+	                        <td><% product.getName(); %></td>
+	                        <td><% product.getPrice(); %></td>
+	                        <td><% product.getBrand().getName(); %></td>
+	                        <td><a href="updateProduct?id=<% product.getId(); %>" class="crud-icon"><i class="fa fa-edit"></i></a></td>
+	                        <td><a href="deleteProduct?id=<% product.getId(); %>" class="crud-icon"><i class="fa fa-times"></i></a></td>
+	                    </tr>
+                    <% } %>
                 </tbody>
             </table>
         </section>

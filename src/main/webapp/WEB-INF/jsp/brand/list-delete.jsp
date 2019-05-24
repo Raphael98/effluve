@@ -1,3 +1,5 @@
+<%@ page import="java.util.List" %>
+<%@ page import="bean.Brand" %>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -5,9 +7,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="../assets/style/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../assets/style/css/style.css">
-    <link rel="stylesheet" href="../assets/style/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/style/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/style/css/style.css">
+    <link rel="stylesheet" href="assets/style/css/font-awesome.min.css">
     <title>Effluve: Gerenciar marca</title>
 </head>
 
@@ -25,6 +27,11 @@
         </section>
         <section class="row">
             <h1>Marca</h1>
+            <% if(request.getAttribute("deleted") != null){ %>
+                <div class="alert alert-success" role="alert">
+  					Deletado com sucesso
+				</div>
+			<% } %>
         </section>
         <section class="row">
             <form class="form-inline">
@@ -34,7 +41,7 @@
                 </div>
                 <button type="submit" class="btn btn-dark mb-2">Buscar</button>
             </form>
-            <a href="new-product.html" class="btn btn-dark mb-2 -slight-margin"><i class="fa fa-plus"></i> Novo</a>
+            <a href="createBrand" class="btn btn-dark mb-2 -slight-margin"><i class="fa fa-plus"></i> Novo</a>
         </section>
         <section class="row">
             <table class="table table-striped">
@@ -48,28 +55,28 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>1 Million</td>
-                        <td>Lorem ipsum dolor</td>
-                        <td><a href="edit-product.html" class="crud-icon"><i class="fa fa-edit"></i></a></td>
-                        <td><a href="#" class="crud-icon"><i class="fa fa-times"></i></a></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>212 NYC</td>
-                        <td>Lorem ipsum dolor</td>
-                        <td><a href="edit-product.html" class="crud-icon"><i class="fa fa-edit"></i></a></td>
-                        <td><a href="#" class="crud-icon"><i class="fa fa-times"></i></a></td>
-                    </tr>
+                	<jsp:useBean id="brandDao" class="dao.BrandDAO"/>
+                	<% List<Brand> brands = brandDao.getAll(); %>
+                	<% for(Brand brand : brands){ %>
+	                    <tr>
+	                        <th scope="row">1</th>
+	                        <td><%= brand.getName() %></td>
+	                        <td><%= brand.getDescription() %></td>
+	                        <td><a href="updateBrand?id=<%= brand.getId() %>" class="crud-icon update-link"><i class="fa fa-edit"></i></a></td>
+	                        <td><a href="deleteBrand?id=<%= brand.getId() %>" onclick="return confirm('Tem certeza que deseja deletar?')" class="crud-icon delete-link"><i class="fa fa-times"></i></a></td>
+	                    </tr>
+                    <% } %>
                 </tbody>
             </table>
         </section>
     </main>
-    <script src="../assets/js/popper.min.js"></script>
-    <script src="../assets/js/jquery.js"></script>
-    <script src="../assets/js/bootstrap.min.js"></script>
-    <script src="../assets/js/main.js"></script>
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/jquery.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+    	
+    </script>
 </body>
 
 </html>
