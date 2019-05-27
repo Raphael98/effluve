@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.omg.CosNaming.NamingContextPackage.NotFound;
+
 import bean.Brand;
 import bean.Product;
 
@@ -37,11 +39,19 @@ public class ProductDAO extends DAO {
 				Product product = new Product();
 				product.setId(rs.getInt("id"));
 				product.setName(rs.getString("name"));
-				product.setDescription(rs.getString("Description"));
-				product.setDescription(rs.getString("Description"));
+				product.setDescription(rs.getString("description"));
+				product.setPrice(Double.parseDouble(rs.getString("price")));
+				product.setBrand(new BrandDAO().get(Integer.parseInt(rs.getString("brand_id"))));
+				product.setGender(new GenderDAO().get(Integer.parseInt(rs.getString("gender_id"))));
 				products.add(product);
 			}
 		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NotFound e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			try {
@@ -51,5 +61,42 @@ public class ProductDAO extends DAO {
 			}
 		}
 		return products;
+	}
+	
+	public Product get(int id) {
+		String sql = String.format("SELECT * FROM %s WHERE id = ?", this.table);
+		Product product = new Product();
+		try(PreparedStatement stmt = this.conn.prepareStatement(sql)){
+			stmt.setInt(1, id);
+			ResultSet rs = stmt.executeQuery();
+			rs.next();
+			product.setId(rs.getInt("id"));
+			product.setName(rs.getString("name"));
+			product.setDescription(rs.getString("description"));
+			product.setPrice(Double.parseDouble(rs.getString("price")));
+			product.setBrand(new BrandDAO().get(Integer.parseInt(rs.getString("brand_id"))));
+			product.setGender(new GenderDAO().get(Integer.parseInt(rs.getString("gender_id"))));
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NotFound e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return product;
+	}
+	
+	public void delete(int id) {
+		String sql = String.format("DELETE FROM %s WHERE id = ?", this.table);
+		try(PreparedStatement stmt = this.conn.prepareStatement(sql)){
+			stmt.setInt(1, id);
+			stmt.execute();
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }
