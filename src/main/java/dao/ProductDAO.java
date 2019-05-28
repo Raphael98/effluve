@@ -10,9 +10,6 @@ import entity.Brand;
 import entity.Product;
 import org.omg.CosNaming.NamingContextPackage.NotFound;
 
-import bean.Brand;
-import bean.Product;
-
 public class ProductDAO extends DAO {
 	private String table = "products";
 	
@@ -94,6 +91,23 @@ public class ProductDAO extends DAO {
 		String sql = String.format("DELETE FROM %s WHERE id = ?", this.table);
 		try(PreparedStatement stmt = this.conn.prepareStatement(sql)){
 			stmt.setInt(1, id);
+			stmt.execute();
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void update(Product product) {
+		String sql = String.format("UPDATE %s set name = ?, price = ?, brand_id = ?, description = ?, gender_id = ? where id = ?;", this.table);
+		try(PreparedStatement stmt = this.conn.prepareStatement(sql)){
+			System.out.println(product.getId());
+			stmt.setString(1, product.getName());
+			stmt.setDouble(2, product.getPrice());
+			stmt.setInt(3, product.getBrand().getId());
+			stmt.setString(4, product.getDescription());
+			stmt.setInt(5, product.getGender().getId());
+			stmt.setInt(6, product.getId());
 			stmt.execute();
 			conn.close();
 		} catch (SQLException e) {

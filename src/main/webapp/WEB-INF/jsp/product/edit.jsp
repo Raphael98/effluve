@@ -1,7 +1,7 @@
 <%@ page import="java.util.List" %>
-<%@ page import="bean.Gender" %>
-<%@ page import="bean.Brand" %>
-<%@ page import="bean.Product" %>
+<%@ page import="entity.Gender" %>
+<%@ page import="entity.Brand" %>
+<%@ page import="entity.Product" %>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -30,23 +30,40 @@
         <section class="row">
         	<jsp:useBean id="productDao" class="dao.ProductDAO"/>
         	<% Product product = productDao.get(Integer.parseInt(request.getParameter("id"))); %>
-            <form class="col-xl-8 offset-xl-2" method="POST">
+            <form class="col-xl-8 offset-xl-2" method="POST" action="updateProduct">
+            	<input type="hidden" name="id" value="<%= request.getParameter("id") %>">
                 <h1>Editar produto</h1>
+                 <% if(request.getAttribute("updated") != null){ %>
+	                <div class="alert alert-success" role="alert">
+	  					Cadastrado com sucesso
+					</div>
+				 <% } %>
                 <div class="row form-group">
                     <div class="col">
                         <label for="name">Nome</label>
-                        <input type="name" id="name" class="form-control" value="<%= product.getName()%>">
+                        <input type="text" id="name" name="name" class="form-control" value="<%= product.getName()%>">
                     </div>
                 </div>
                 <div class="row form-group">
                     <div class="col">
                         <label for="price">Pre√ßo</label>
-                        <input type="price" id="price" class="form-control" value="<%= product.getPrice() %>">
+                        <input type="text" id="price" name="price" class="form-control" value="<%= product.getPrice() %>">
+                    </div>
+                    <div class="col">
+                        <label for="price">GÍnero</label>
+                        <jsp:useBean id="genderDao" class="dao.GenderDAO"/>
+                        <% List<Gender> genders = genderDao.getAll(); %>
+                        <select id="gender" name="gender" class="form-control">
+                        	<option>-- SELECIONE --</option>
+                        	<% for(Gender gender : genders){ %>
+                        		<option value="<%= gender.getId() %>" <% if(gender.getId() == product.getGender().getId()){out.println("selected");} %>><%= gender.getName() %></option>
+                        	<% } %>
+                        </select>
                     </div>
                     <div class="col">
                         <label for="brand">Marca</label>
                         <jsp:useBean id="dao" class="dao.BrandDAO"/>
-                        <select id="brand" name="brand" name="brand" class="form-control">
+                        <select id="brand" name="brand" class="form-control">
                             <option> -- SELECIONE --</option>
                             <% List<Brand> brands = dao.getAll(); %>
                             <% for(Brand brand : brands){ %>
@@ -57,13 +74,14 @@
                 </div>
                 <div class="form-group">
                     <label for="description">Descricao</label>
-                    <textarea id="description" class="form-control"><%= product.getDescription() %></textarea>
+                    <textarea id="description" name="description" class="form-control"><%= product.getDescription() %></textarea>
                 </div>
                 <input type="submit" class="btn btn-dark" value="Editar">
                 <a href="list-delete-product.html" class="-slight-margin">Voltar</a>
             </form>
         </section>
     </main>
+    <script src="assets/js/popper.min.js"></script>
     <script src="assets/js/jquery.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/main.js"></script>

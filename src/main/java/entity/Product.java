@@ -31,7 +31,7 @@ public class Product extends Entity {
 	
 	public Product(String name, String price, String brand, String description, String gender) {
 		this.name = name;
-		this.price = Integer.parseInt(price);
+		this.price = Double.parseDouble(price);
 		try {
 			this.brand = new BrandDAO().get(Integer.parseInt(brand));
 			this.gender = new GenderDAO().get(Integer.parseInt(gender));

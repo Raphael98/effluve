@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.ProductDAO;
+import entity.Product;
+
 @WebServlet("/updateProduct")
 public class Update extends HttpServlet {
 	
@@ -18,7 +21,9 @@ public class Update extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		req.getRequestDispatcher("WEB-INF/jsp/product/edit.jsp").forward(req, resp);
+		Product product = new Product(req.getParameter("name"),req.getParameter("price"),req.getParameter("brand"),req.getParameter("description"),req.getParameter("gender"));
+		new ProductDAO().update(product);
+		req.setAttribute("updated", true);
+		req.getRequestDispatcher("WEB-INF/jsp/product/list-delete.jsp").forward(req, resp);
 	}
 }
