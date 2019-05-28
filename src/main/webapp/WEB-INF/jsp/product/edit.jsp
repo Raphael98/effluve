@@ -50,7 +50,7 @@
                         <input type="text" id="price" name="price" class="form-control" value="<%= product.getPrice() %>">
                     </div>
                     <div class="col">
-                        <label for="price">Gênero</label>
+                        <label for="price">G?ero</label>
                         <jsp:useBean id="genderDao" class="dao.GenderDAO"/>
                         <% List<Gender> genders = genderDao.getAll(); %>
                         <select id="gender" name="gender" class="form-control">
@@ -65,6 +65,7 @@
                         <jsp:useBean id="dao" class="dao.BrandDAO"/>
                         <select id="brand" name="brand" class="form-control">
                             <option> -- SELECIONE --</option>
+
                             <% List<Brand> brands = dao.getAll(); %>
                             <% for(Brand brand : brands){ %>
 	                            <option value="<%= brand.getId() %>" <% if(brand.getId() == product.getBrand().getId()){out.println("selected");} %>><%= brand.getName() %></option>
