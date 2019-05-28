@@ -1,4 +1,4 @@
-package bean;
+package entity;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 import factory.ConnectionFactory;
 
-public class User extends Bean {
+public class User extends Entity {
 	private String name;
 	private String password;
 	private String email;
@@ -38,7 +38,6 @@ public class User extends Bean {
 	public void setNumber(String number) {
 		this.number = number;
 	}
-	
 	
 	public String getName() {
 		return name;

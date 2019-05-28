@@ -8,8 +8,8 @@ import java.util.List;
 
 import org.omg.CosNaming.NamingContextPackage.NotFound;
 
-import bean.Brand;
-import bean.Gender;
+import entity.Brand;
+import entity.Gender;
 
 public class GenderDAO extends DAO{
 	private String table = "genders";

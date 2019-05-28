@@ -3,8 +3,8 @@ package dao;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import bean.Bean;
-import bean.User;
+import entity.Entity;
+import entity.User;
 
 public class UserDAO extends DAO{
 	private String table = "users";
@@ -21,6 +21,8 @@ public class UserDAO extends DAO{
 			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}	
+		}
 	}
+	
+	
 }

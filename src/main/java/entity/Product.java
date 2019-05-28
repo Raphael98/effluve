@@ -1,11 +1,11 @@
-package bean;
+package entity;
 
 import org.omg.CosNaming.NamingContextPackage.NotFound;
 
 import dao.BrandDAO;
 import dao.GenderDAO;
 
-public class Product extends Bean {
+public class Product extends Entity {
 	private String name;
 	private double price;
 	private Brand brand;
@@ -64,9 +64,5 @@ public class Product extends Bean {
 	}
 	public void setDescription(String description) {
 		this.description = description;
-	}
-	
-	public static void main(String[] args) {
-		System.out.println(String.format("Este é o número %s", 2));
 	}
 }

@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.omg.CosNaming.NamingContextPackage.NotFound;
 
-import bean.Brand;
 import dao.BrandDAO;
+import entity.Brand;
 
 @WebServlet("/deleteBrand")
 public class Delete extends HttpServlet {

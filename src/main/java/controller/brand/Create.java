@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.Brand;
 import dao.BrandDAO;
+import entity.Brand;
 
 @WebServlet("/createBrand")
 public class Create extends HttpServlet {

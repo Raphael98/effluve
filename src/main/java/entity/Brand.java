@@ -1,6 +1,6 @@
-package bean;
+package entity;
 
-public class Brand extends Bean{
+public class Brand extends Entity{
 	private String name;
 	private String description;
 

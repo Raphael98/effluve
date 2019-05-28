@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.User;
 import dao.UserDAO;
+import entity.User;
 
 @WebServlet("/userRegister")
 public class UserRegister extends HttpServlet {

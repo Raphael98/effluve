@@ -8,7 +8,7 @@ import java.util.List;
 
 import org.omg.CosNaming.NamingContextPackage.NotFound;
 
-import bean.Brand;
+import entity.Brand;
 
 public class BrandDAO extends DAO {
 	public String table = "brands";

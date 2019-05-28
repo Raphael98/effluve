@@ -1,5 +1,5 @@
 <%@ page import="java.util.List" %>
-<%@ page import="bean.Product" %>
+<%@ page import="entity.Product" %>
 <!DOCTYPE html>
 <html lang="pt-br">
 

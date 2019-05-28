@@ -1,6 +1,6 @@
-package bean;
+package entity;
 
-public abstract class Bean {
+public abstract class Entity {
 	protected int id;
 	
 	public int getId() {

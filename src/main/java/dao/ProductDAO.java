@@ -6,8 +6,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import bean.Brand;
-import bean.Product;
+import entity.Brand;
+import entity.Product;
 
 public class ProductDAO extends DAO {
 	private String table = "products";
@@ -15,7 +15,6 @@ public class ProductDAO extends DAO {
 	public void add(Product product) {
 		String sql = String.format("INSERT INTO %s (name, price, brand_id, description, gender_id) VALUES (?,?,?,?,?)", this.table);
 		try(PreparedStatement stmt = this.conn.prepareStatement(sql)){
-			System.out.println(product.getGender().getId());
 			stmt.setString(1, product.getName());
 			stmt.setDouble(2, product.getPrice());
 			stmt.setInt(3, product.getBrand().getId());
@@ -37,7 +36,6 @@ public class ProductDAO extends DAO {
 				Product product = new Product();
 				product.setId(rs.getInt("id"));
 				product.setName(rs.getString("name"));
-				product.setDescription(rs.getString("Description"));
 				product.setDescription(rs.getString("Description"));
 				products.add(product);
 			}

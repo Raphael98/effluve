@@ -1,6 +1,6 @@
-package bean;
+package entity;
 
-public class Gender extends Bean{
+public class Gender extends Entity{
 	private String name;
 	
 	public void setName(String name) {
