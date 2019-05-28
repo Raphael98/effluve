@@ -47,7 +47,7 @@
                         <label for="brand">Marca</label>
                         <jsp:useBean id="dao" class="dao.BrandDAO"/>
                         <select id="brand" name="brand" name="brand" class="form-control">
-                            <option> -- SELECIONE --</option>
+                            <option value="a"> -- SELECIONE --</option>
                             <% List<Brand> brands = dao.getAll(); %>
                             <% for(Brand brand : brands){ %>
 	                            <option value="<%= brand.getId() %>" <% if(brand.getId() == product.getBrand().getId()){out.println("selected");} %>><%= brand.getName() %></option>
