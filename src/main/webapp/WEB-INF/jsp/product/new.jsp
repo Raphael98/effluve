@@ -29,12 +29,12 @@
         <section class="row">
             <form class="col-xl-8 offset-xl-2" method="POST" action="createProduct">
                 <h1>Novo produto</h1>
-                <div class="row form-group">
                  <% if(request.getAttribute("success") != null){ %>
 	                <div class="alert alert-success" role="alert">
 	  					Cadastrado com sucesso
 					</div>
 				 <% } %>
+                <div class="row form-group">
                     <div class="col">
                         <label for="name">Nome</label>
                         <input type="name" id="name" name="name" class="form-control">
@@ -73,7 +73,7 @@
                     <textarea id="description" name="description" class="form-control"></textarea>
                 </div>
                 <input type="submit" class="btn btn-dark" value="Cadastrar">
-                <a href="list-delete-product.html" class="-slight-margin">Voltar</a>
+                <a href="productManaging" class="-slight-margin">Voltar</a>
             </form>
         </section>
     </main>

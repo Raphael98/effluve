@@ -1,5 +1,6 @@
 <%@ page import="java.util.List" %>
-<%@ page import="entity.Product" %>
+<%@ page import="bean.Product" %>
+<%@ page import="bean.Brand" %>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -29,6 +30,11 @@
             <h1>Produtos</h1>
         </section>
         <section class="row">
+	        <% if(request.getAttribute("deleted") != null){ %>
+               <div class="alert alert-success col-md-12 col-lg-12" role="alert">
+ 					Deletado com sucesso
+				</div>
+			 <% } %>
             <form class="form-inline">
                 <div class="form-group mx-sm-3 mb-2">
                     <label for="name" class="sr-only">Password</label>
@@ -46,6 +52,7 @@
                         <th scope="col">Nome</th>
                         <th scope="col">Preço</th>
                         <th scope="col">Fabricante</th>
+                        <th scope="col">G�nero</th>
                         <th scope="col">Editar</th>
                         <th scope="col">Excluir</th>
                     </tr>
@@ -53,16 +60,17 @@
                 <tbody>
                 	<jsp:useBean id="productDao" class="dao.ProductDAO"/>
                 	<% List<Product> products = productDao.getAll(); %>
-                	<%for(Product product : products){ %>
+                	<% for(Product product : products){ %>
 	                    <tr>
-	                        <th scope="row">1</th>
-	                        <td><% product.getName(); %></td>
-	                        <td><% product.getPrice(); %></td>
-	                        <td><% product.getBrand().getName(); %></td>
-	                        <td><a href="updateProduct?id=<% product.getId(); %>" class="crud-icon"><i class="fa fa-edit"></i></a></td>
-	                        <td><a href="deleteProduct?id=<% product.getId(); %>" class="crud-icon"><i class="fa fa-times"></i></a></td>
+	                        <th scope="row"><%= product.getId() %></th>
+	                        <td><%= product.getName()  %></td>
+	                        <td><%= product.getPrice()  %></td>
+	                        <td><%= product.getBrand().getName() %></td>
+	                       	<td><%= product.getGender().getName() %></td>
+	                        <td><a href="updateProduct?id=<%= product.getId() %>" class="crud-icon"><i class="fa fa-edit"></i></a></td>
+	                        <td><a href="deleteProduct?id=<%= product.getId() %>" class="crud-icon" onclick="return confirm('Tem certeza que deseja deletar?')"><i class="fa fa-times"></i></a></td>
 	                    </tr>
-                    <% } %>
+	                <% } %>
                 </tbody>
             </table>
         </section>
