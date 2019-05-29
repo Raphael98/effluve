@@ -22,7 +22,6 @@ public class ProductDAO extends DAO {
 			stmt.setString(4, product.getDescription());
 			stmt.setInt(5, product.getGender().getId());
 			stmt.execute();
-			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -51,12 +50,6 @@ public class ProductDAO extends DAO {
 		} catch (NotFound e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally {
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
 		}
 		return products;
 	}
@@ -74,7 +67,6 @@ public class ProductDAO extends DAO {
 			product.setPrice(Double.parseDouble(rs.getString("price")));
 			product.setBrand(new BrandDAO().get(Integer.parseInt(rs.getString("brand_id"))));
 			product.setGender(new GenderDAO().get(Integer.parseInt(rs.getString("gender_id"))));
-			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (NumberFormatException e) {
@@ -92,7 +84,6 @@ public class ProductDAO extends DAO {
 		try(PreparedStatement stmt = this.conn.prepareStatement(sql)){
 			stmt.setInt(1, id);
 			stmt.execute();
-			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -109,7 +100,6 @@ public class ProductDAO extends DAO {
 			stmt.setInt(5, product.getGender().getId());
 			stmt.setInt(6, product.getId());
 			stmt.execute();
-			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

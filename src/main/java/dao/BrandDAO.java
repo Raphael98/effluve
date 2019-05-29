@@ -55,13 +55,7 @@ public class BrandDAO extends DAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
+		} 
 		return brands;
 	}
 	

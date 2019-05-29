@@ -78,7 +78,7 @@
                     <textarea id="description" name="description" class="form-control"><%= product.getDescription() %></textarea>
                 </div>
                 <input type="submit" class="btn btn-dark" value="Editar">
-                <a href="list-delete-product.html" class="-slight-margin">Voltar</a>
+                <a href="productManaging" class="-slight-margin">Voltar</a>
             </form>
         </section>
     </main>

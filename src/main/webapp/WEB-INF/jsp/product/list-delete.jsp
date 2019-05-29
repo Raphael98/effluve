@@ -35,13 +35,6 @@
  					Deletado com sucesso
 				</div>
 			 <% } %>
-            <form class="form-inline">
-                <div class="form-group mx-sm-3 mb-2">
-                    <label for="name" class="sr-only">Password</label>
-                    <input type="text" class="form-control" id="name" placeholder="Nome, marca ou preço">
-                </div>
-                <button type="submit" class="btn btn-dark mb-2">Buscar</button>
-            </form>
             <a href="createProduct" class="btn btn-dark mb-2 -slight-margin"><i class="fa fa-plus"></i> Novo</a>
         </section>
         <section class="row">

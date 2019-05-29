@@ -18,7 +18,6 @@ public class UserDAO extends DAO{
 			stmt.setString(4, user.getCep());
 			stmt.setString(5, user.getNumber());
 			stmt.execute();
-			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

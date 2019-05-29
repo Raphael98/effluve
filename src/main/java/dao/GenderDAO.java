@@ -27,12 +27,6 @@ public class GenderDAO extends DAO{
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
 		}
 		return genders;
 	}
@@ -49,12 +43,6 @@ public class GenderDAO extends DAO{
 			gender.setName(rs.getString("name"));
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
 		}
 		return gender;
 	}
