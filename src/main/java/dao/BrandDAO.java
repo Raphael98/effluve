@@ -9,6 +9,7 @@ import java.util.List;
 import org.omg.CosNaming.NamingContextPackage.NotFound;
 
 import entity.Brand;
+import entity.Product;
 
 public class BrandDAO extends DAO {
 	public String table = "brands";
@@ -65,6 +66,18 @@ public class BrandDAO extends DAO {
 			stmt.setInt(1, brand.getId());
 			stmt.execute();
 		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void update(Brand brand) {
+		String sql = String.format("UPDATE %s set name = ?, description = ? where id = ?;", this.table);
+		try(PreparedStatement stmt = this.conn.prepareStatement(sql)){
+			stmt.setString(1, brand.getName());
+			stmt.setString(2, brand.getDescription());
+			stmt.setInt(3, brand.getId());
+			stmt.execute();
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}

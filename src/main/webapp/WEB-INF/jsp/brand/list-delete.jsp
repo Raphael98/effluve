@@ -27,13 +27,13 @@
         </section>
         <section class="row">
             <h1>Marca</h1>
+        </section>
+        <section class="row">
             <% if(request.getAttribute("deleted") != null){ %>
-                <div class="alert alert-success" role="alert">
+                <div class="alert alert-success col-lg-12 col-md-12" role="alert">
   					Deletado com sucesso
 				</div>
 			<% } %>
-        </section>
-        <section class="row">
             <a href="createBrand" class="btn btn-dark mb-2 -slight-margin"><i class="fa fa-plus"></i> Novo</a>
         </section>
         <section class="row">
@@ -44,7 +44,7 @@
                         <th scope="col">Nome</th>
                         <th scope="col">Descrição</th>
                         <th scope="col">Editar</th>
-                        <th scope="col">Excluir</th>
+                        <!-- <th scope="col">Excluir</th> -->
                     </tr>
                 </thead>
                 <tbody>
@@ -56,7 +56,7 @@
 	                        <td><%= brand.getName() %></td>
 	                        <td><%= brand.getDescription() %></td>
 	                        <td><a href="updateBrand?id=<%= brand.getId() %>" class="crud-icon update-link"><i class="fa fa-edit"></i></a></td>
-	                        <td><a href="deleteBrand?id=<%= brand.getId() %>" onclick="return confirm('Tem certeza que deseja deletar?')" class="crud-icon delete-link"><i class="fa fa-times"></i></a></td>
+	                        <!-- <td><a href="deleteBrand?id=<%= brand.getId() %>" onclick="return confirm('Tem certeza que deseja deletar?')" class="crud-icon delete-link"><i class="fa fa-times"></i></a></td> -->
 	                    </tr>
                     <% } %>
                 </tbody>
