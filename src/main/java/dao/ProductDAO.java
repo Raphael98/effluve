@@ -92,7 +92,6 @@ public class ProductDAO extends DAO {
 	public void update(Product product) {
 		String sql = String.format("UPDATE %s set name = ?, price = ?, brand_id = ?, description = ?, gender_id = ? where id = ?;", this.table);
 		try(PreparedStatement stmt = this.conn.prepareStatement(sql)){
-			System.out.println(product.getId());
 			stmt.setString(1, product.getName());
 			stmt.setDouble(2, product.getPrice());
 			stmt.setInt(3, product.getBrand().getId());
@@ -103,5 +102,32 @@ public class ProductDAO extends DAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public List<Product> getByName(String name) {
+		List<Product> products = new ArrayList<>();
+		String sql = String.format("SELECT * FROM %s;", this.table);
+		try(PreparedStatement stmt = conn.prepareStatement(sql)){
+			ResultSet rs = stmt.executeQuery();
+			while(rs.next()) {
+				Product product = new Product();
+				product.setId(rs.getInt("id"));
+				product.setName(rs.getString("name"));
+				product.setDescription(rs.getString("description"));
+				product.setPrice(Double.parseDouble(rs.getString("price")));
+				product.setBrand(new BrandDAO().get(Integer.parseInt(rs.getString("brand_id"))));
+				product.setGender(new GenderDAO().get(Integer.parseInt(rs.getString("gender_id"))));
+				products.add(product);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NotFound e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return products;
 	}
 }

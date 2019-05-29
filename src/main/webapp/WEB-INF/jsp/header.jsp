@@ -1,14 +1,12 @@
     <a href="index.html" class="logo"> Effluve</a>
-    <a href="search.html?gender[]=F"> Feminino</a>
-    <a href="search.html?gender[]=M"> Masculino</a>
-    <a href="search.html?category[]=amadeirado"> Amadeirado</a>
-    <a href="search.html?category[]=doce"> Doce</a>
-    <a href="search.html?category[]=citrico"> Cítrico</a>
-    <form method="get">
+    <a href="search.html?gender[]=F"> Paco Rabanne</a>
+    <a href="search.html?gender[]=M"> Azarro</a>
+    <a href="search.html?category[]=amadeirado"> Carolina Herrera</a>
+    <form method="GET" action="search">
         <div class="input-group">
-            <input type="text" class="form-control" size="40" placeholder="O que você precisa?">
+            <input type="text" class="form-control" name="name" size="40" placeholder="O que você precisa?">
             <span class="input-group-btn">
-                <button class="btn btn-default" type="button">Pesquisar</button>
+                <button class="btn btn-default">Pesquisar</button>
             </span>
         </div>
     </form>
