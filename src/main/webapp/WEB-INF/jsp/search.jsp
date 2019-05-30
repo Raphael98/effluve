@@ -1,6 +1,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="entity.Brand" %>
 <%@ page import="entity.Gender" %>
+<%@ page import="entity.Product" %>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -37,7 +38,7 @@
                             <% for(Brand brand : brands){ %>
 	                            <div class="form-check">
 	                                <label class="form-check-label">
-	                                    <input class="form-check-input" type="checkbox" value="<%= brand.getId() %>">
+	                                    <input class="form-check-input" name="brand[]" type="checkbox" value="<%= brand.getId() %>">
 	                                    <%= brand.getName() %>
 	                                </label>
 	                            </div>
@@ -67,15 +68,18 @@
                     </div>
                 </div>
                 <ul class="row">
-                    <li id="perfume" class="col-lg-4 col-xl-4">
-                        <a href="single.html" class="card">
-                            <img class="card-img-top" src="assets/img/perfume.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">212 VIP</h5>
-                                <p class="card-text">R$ 220</p>
-                            </div>
-                        </a>
-                    </li>
+                	<%List<Product> products = (List<Product>) request.getAttribute("products"); %>
+                	<% for(Product product : products){ %>
+	                    <li id="perfume" class="col-lg-4 col-xl-4">
+	                        <a href="single.html" class="card">
+	                            <img class="card-img-top" src="assets/img/perfume.jpg" alt="Card image cap">
+	                            <div class="card-body">
+	                                <h5 class="card-title"><%= product.getName() %></h5>
+	                                <p class="card-text">R$ <%= product.getPrice() %></p>
+	                            </div>
+	                        </a>
+	                    </li>
+                    <% } %>
                 </ul>
             </div>
         </section>
@@ -84,13 +88,6 @@
     <script src="assets/js/jquery.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/main.js"></script>
-    <script>
-        var card = $('#perfume');
-        var section = $('ul.row');
-        for (var i = 0; i < 10; i++) {
-            section.append(card.clone());
-        }
-    </script>
 </body>
 
 </html>

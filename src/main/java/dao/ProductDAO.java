@@ -6,9 +6,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import entity.Brand;
-import entity.Product;
 import org.omg.CosNaming.NamingContextPackage.NotFound;
+
+import entity.Gender;
+import entity.Product;
 
 public class ProductDAO extends DAO {
 	private String table = "products";
@@ -108,6 +109,61 @@ public class ProductDAO extends DAO {
 		List<Product> products = new ArrayList<>();
 		String sql = String.format("SELECT * FROM %s;", this.table);
 		try(PreparedStatement stmt = conn.prepareStatement(sql)){
+			ResultSet rs = stmt.executeQuery();
+			while(rs.next()) {
+				Product product = new Product();
+				product.setId(rs.getInt("id"));
+				product.setName(rs.getString("name"));
+				product.setDescription(rs.getString("description"));
+				product.setPrice(Double.parseDouble(rs.getString("price")));
+				product.setBrand(new BrandDAO().get(Integer.parseInt(rs.getString("brand_id"))));
+				product.setGender(new GenderDAO().get(Integer.parseInt(rs.getString("gender_id"))));
+				products.add(product);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NotFound e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return products;
+	}
+	
+	public List<Product> search(String[] genders, String[] brands) {
+		String sql = String.format("SELECT * FROM %s ", this.table);
+		if(genders != null) {
+			String[] genderField = new String[genders.length];
+			for(int i = 0; i < genders.length; i++) {
+				genderField[i] = "gender_id = ?";
+			}
+			sql += "WHERE "+String.join(" OR ", genderField);
+		}
+		
+		if(brands != null) {
+			String[] brandField = new String[brands.length];
+			for(int i = 0; i < brands.length; i++) {
+				brandField[i] = "brand_id = ?";
+			}
+			sql += genders == null ? "WHERE " : "";
+			sql += String.join(" OR ", brandField);
+		}
+		List<Product> products = new ArrayList<>();
+		try(PreparedStatement stmt = conn.prepareStatement(sql)){
+			if(genders != null) {
+				for(int i = 0; i < genders.length; i++){
+					stmt.setInt(i+1, Integer.parseInt(genders[i]));
+				}
+			}
+			if(brands != null) {
+				int x = genders == null ? 1 : genders.length + 1;
+				for( int i = 0; i < brands.length; i++){
+					stmt.setInt(x, Integer.parseInt(brands[i]));
+					x += 1;
+				}
+			}
 			ResultSet rs = stmt.executeQuery();
 			while(rs.next()) {
 				Product product = new Product();
