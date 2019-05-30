@@ -1,7 +1,14 @@
-    <a href="index.html" class="logo"> Effluve</a>
-    <a href="search.html?gender[]=F"> Paco Rabanne</a>
-    <a href="search.html?gender[]=M"> Azarro</a>
-    <a href="search.html?category[]=amadeirado"> Carolina Herrera</a>
+<%@ page import="java.util.List" %>
+<%@ page import="entity.Brand" %>
+<%@ page import="entity.Gender" %>
+<%@ page import="entity.Product" %>
+
+    <jsp:useBean id="dao" class="dao.BrandDAO"/>
+    <%List<Brand> brands = dao.getAll(); %>
+    <a href="home" class="logo"> Effluve</a>
+    <% for(Brand brand : brands){ %>
+	    <a href="search"> <%= brand.getName() %></a>
+    <% } %>
     <form method="GET" action="search">
         <div class="input-group">
             <input type="text" class="form-control" name="name" size="40" placeholder="O que você precisa?">

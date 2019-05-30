@@ -70,8 +70,8 @@
                 <ul class="row">
                 	<%List<Product> products = (List<Product>) request.getAttribute("products"); %>
                 	<% for(Product product : products){ %>
-	                    <li id="perfume" class="col-lg-4 col-xl-4">
-	                        <a href="single.html" class="card">
+	                    <li class="col-lg-4 col-xl-4">
+	                        <a href="single?id=<%= product.getId() %>" class="card">
 	                            <img class="card-img-top" src="assets/img/perfume.jpg" alt="Card image cap">
 	                            <div class="card-body">
 	                                <h5 class="card-title"><%= product.getName() %></h5>
