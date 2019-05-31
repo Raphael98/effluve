@@ -5,6 +5,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.nio.charset.MalformedInputException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.HashMap;
@@ -37,9 +40,5 @@ public class ConnectionFactory {
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
-	}
-	
-	public static void main(String[] args) {
-		Map<String, String> c = ConnectionFactory.getCredentials();
 	}
 }
