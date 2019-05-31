@@ -8,10 +8,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "productManager", urlPatterns = {"/productManaging"})
-public class Manager extends HttpServlet {
+import dao.ProductDAO;
+
+@WebServlet("/deleteProduct")
+public class Delete extends HttpServlet {
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("/WEB-INF/jsp/product/list-delete.jsp").forward(req, resp);
+		int id = Integer.parseInt(req.getParameter("id"));
+		new ProductDAO().delete(id);
+		req.setAttribute("deleted", true);
+		req.getRequestDispatcher("WEB-INF/jsp/product/list-delete.jsp").forward(req, resp);
 	}
 }

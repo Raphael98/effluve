@@ -11,19 +11,22 @@ import javax.servlet.http.HttpServletResponse;
 import dao.BrandDAO;
 import entity.Brand;
 
-@WebServlet("/createBrand")
-public class Create extends HttpServlet {
-	
+@WebServlet("/updateBrand")
+public class Update extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("/WEB-INF/jsp/brand/new.jsp").forward(req, resp);
+		if(req.getParameter("id") == null) {
+			req.getRequestDispatcher("WEB-INF/jsp/brand/list-delete.jsp").forward(req, resp);
+		}else {
+			req.getRequestDispatcher("WEB-INF/jsp/brand/edit.jsp").forward(req, resp);
+		}
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Brand brand = new Brand(req.getParameter("name"), req.getParameter("description"));
-		new BrandDAO().add(brand);
-		req.setAttribute("success", true);
-		req.getRequestDispatcher("/WEB-INF/jsp/brand/new.jsp").forward(req, resp);
+		brand.setId(Integer.parseInt(req.getParameter("id")));
+		new BrandDAO().update(brand);
+		req.getRequestDispatcher("WEB-INF/jsp/brand/list-delete.jsp").forward(req, resp);
 	}
 }

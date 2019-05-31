@@ -1,4 +1,4 @@
-package controller;
+package controller.user;
 
 import java.io.IOException;
 
@@ -9,11 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.User;
 import dao.UserDAO;
+import entity.User;
 
 @WebServlet("/userRegister")
-public class UserRegister extends HttpServlet {
+public class Register extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		RequestDispatcher dispatch = req.getRequestDispatcher("/WEB-INF/jsp/register.jsp");

@@ -1,3 +1,7 @@
+<%@ page import="java.util.List" %>
+<%@ page import="entity.Brand" %>
+<%@ page import="entity.Gender" %>
+<%@ page import="entity.Product" %>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -24,24 +28,25 @@
             </div>
         </section>
         <section class="row">
+        <%Product product = (Product) request.getAttribute("product");%>
             <figure class="col-lg-4 col-xl-4">
                 <img src="assets/img/perfume.jpg">
             </figure>
             <div class="col-lg-4 col-xl-4">
-                <h1>212 NYC MEN</h1>
-                <h2>Caroline Herrera</h2>
+                <h1><%= product.getName() %></h1>
+                <h2><%= product.getBrand().getName() %></h2>
                 <p>
-                    <spa class="price">R$ 235,00</spa>
+                    <spa class="price">R$ <%= product.getPrice() %></spa>
                 </p>
-                <p><a href="#" class="btn btn-dark icon-btn"><i class="fa fa-cart-plus white"></i></a></p>
+                <form method="POST" action="buy">
+                	<input type="hidden" name="id" value="<%= product.getId() %>">
+                	<p><button class="btn btn-dark icon-btn" style="font-size:1.8rem"><i class="fa fa-cart-plus white"></i></button></p>
+                </form>
             </div>
             <div class="col-lg-4 col-xl-4">
                     <h2>Descrição</h2>
                     <p>
-                        Tempor ad cupidatat culpa ea irure. Nulla consequat nostrud deserunt commodo et sunt est occaecat
-                        consectetur adipisicing tempor. Nisi commodo voluptate ex excepteur nulla minim laborum sunt Lorem
-                        pariatur sit. Sint labore labore ex cillum et sunt et deserunt non sint labore. Ea velit sit
-                        proident est minim ipsum proident.
+                        <%= product.getDescription()  %>
                     </p>
                 </div>
         </section>

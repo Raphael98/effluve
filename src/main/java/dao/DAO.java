@@ -1,15 +1,18 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
-import bean.Bean;
+import entity.Entity;
+import entity.User;
 import factory.ConnectionFactory;
 
 public abstract class DAO {
-	
+	protected String table;
 	protected Connection conn;
 	
 	public DAO() {
-		conn = new ConnectionFactory().getConnection();
+		this.conn = new ConnectionFactory().getConnection();
 	}
 }

@@ -1,3 +1,6 @@
+<%@ page import="java.util.List" %>
+<%@ page import="entity.Product" %>
+<%@ page import="entity.Brand" %>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -27,13 +30,11 @@
             <h1>Produtos</h1>
         </section>
         <section class="row">
-            <form class="form-inline">
-                <div class="form-group mx-sm-3 mb-2">
-                    <label for="name" class="sr-only">Password</label>
-                    <input type="text" class="form-control" id="name" placeholder="Nome, marca ou preço">
-                </div>
-                <button type="submit" class="btn btn-dark mb-2">Buscar</button>
-            </form>
+	        <% if(request.getAttribute("deleted") != null){ %>
+               <div class="alert alert-success col-md-12 col-lg-12" role="alert">
+ 					Deletado com sucesso
+				</div>
+			 <% } %>
             <a href="createProduct" class="btn btn-dark mb-2 -slight-margin"><i class="fa fa-plus"></i> Novo</a>
         </section>
         <section class="row">
@@ -44,27 +45,25 @@
                         <th scope="col">Nome</th>
                         <th scope="col">Preço</th>
                         <th scope="col">Fabricante</th>
+                        <th scope="col">G�nero</th>
                         <th scope="col">Editar</th>
                         <th scope="col">Excluir</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>1 Million</td>
-                        <td>R$ 450</td>
-                        <td>Paco Rabanne</td>
-                        <td><a href="edit-product.html" class="crud-icon"><i class="fa fa-edit"></i></a></td>
-                        <td><a href="#" class="crud-icon"><i class="fa fa-times"></i></a></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>212 NYC</td>
-                        <td>R$ 380</td>
-                        <td>Paco Rabanne</td>
-                        <td><a href="edit-product.html" class="crud-icon"><i class="fa fa-edit"></i></a></td>
-                        <td><a href="#" class="crud-icon"><i class="fa fa-times"></i></a></td>
-                    </tr>
+                	<jsp:useBean id="productDao" class="dao.ProductDAO"/>
+                	<% List<Product> products = productDao.getAll(); %>
+                	<% for(Product product : products){ %>
+	                    <tr>
+	                        <th scope="row"><%= product.getId() %></th>
+	                        <td><%= product.getName()  %></td>
+	                        <td><%= product.getPrice()  %></td>
+	                        <td><%= product.getBrand().getName() %></td>
+	                       	<td><%= product.getGender().getName() %></td>
+	                        <td><a href="updateProduct?id=<%= product.getId() %>" class="crud-icon"><i class="fa fa-edit"></i></a></td>
+	                        <td><a href="deleteProduct?id=<%= product.getId() %>" class="crud-icon" onclick="return confirm('Tem certeza que deseja deletar?')"><i class="fa fa-times"></i></a></td>
+	                    </tr>
+	                <% } %>
                 </tbody>
             </table>
         </section>
