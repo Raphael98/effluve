@@ -1,3 +1,5 @@
+<%@ page import="java.util.List" %>
+<%@ page import="entity.Order" %>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -29,18 +31,23 @@
             </h1>
         </section>
         <section>
+         <jsp:useBean id="dao" class="dao.OrderDAO"/>
+         <%List<Order> orders = dao.getAll((int)session.getAttribute("id")); %>
             <ul>
-                <a href="#" class="black">
+            <% for(Order order : orders){ %>
+                <a class="black">
                     <li class="row">
                         <figure class="col-lg-2">
                             <img src="assets/img/perfume.jpg">
                         </figure>
                         <div class="col-lg-6">
-                            <h2>212 NYC, Carolina Herrera</h2>
-                            <p>Entregue</p>
+                            <h2><%= order.getProduct().getName() %></h2>
+                            <p>Data do pedido <%= order.getDate() %></p>
+                            <p>Codigo <%= order.getCode() %></p>
                         </div>
                     </li>
                 </a>
+            <% } %>
             </ul>
         </section>
     </main>

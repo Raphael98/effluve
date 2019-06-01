@@ -13,7 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebFilter(asyncSupported=true, servletNames = {"productManager"})
+import controller.user.Session;
+
+@WebFilter(asyncSupported=true, servletNames = {"productManager","createProduct","createBrand", 
+		"brandManager", "updateBrand", "createProduct", "deleteProduct", "single", "updateProduct"})
 public class Auth implements Filter {
 
 	@Override
@@ -31,9 +34,12 @@ public class Auth implements Filter {
 			throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
-		
-		
-		chain.doFilter(request, response);
+		if(!Session.isValid(req)){
+			req.setAttribute("failed", true);
+			req.getRequestDispatcher("WEB-INF/jsp/login.jsp").forward(req, res);
+		}else {
+			chain.doFilter(request, response);			
+		}
 	}
 	
 

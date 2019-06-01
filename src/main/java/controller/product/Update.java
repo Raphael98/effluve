@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import dao.ProductDAO;
 import entity.Product;
 
-@WebServlet("/updateProduct")
+@WebServlet(urlPatterns = {"/updateProduct"}, name = "updateProduct")
 public class Update extends HttpServlet {
 	
 	@Override

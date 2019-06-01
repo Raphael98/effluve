@@ -38,8 +38,9 @@
                 <p>
                     <spa class="price">R$ <%= product.getPrice() %></spa>
                 </p>
-                <form method="POST" action="buy">
-                	<input type="hidden" name="id" value="<%= product.getId() %>">
+                <form method="POST" action="orders">
+                	<input type="hidden" name="product" value="<%= product.getId() %>">
+                	<input type="hidden" name="user" value="<%= session.getAttribute("id") %>">
                 	<p><button class="btn btn-dark icon-btn" style="font-size:1.8rem"><i class="fa fa-cart-plus white"></i></button></p>
                 </form>
             </div>

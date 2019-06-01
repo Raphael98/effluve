@@ -2,6 +2,7 @@
 <%@ page import="entity.Brand" %>
 <%@ page import="entity.Gender" %>
 <%@ page import="entity.Product" %>
+<%@ page session="false" %>
 <!DOCTYPE html>
 <html lang="pt-br">
 

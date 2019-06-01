@@ -1,3 +1,4 @@
+
 package entity;
 
 import java.sql.Connection;
@@ -23,6 +24,11 @@ public class User extends Entity {
 		this.number = number;
 	}
 	
+	public User(String email, String password) {
+		this.email = email;
+		this.password = password;
+	}
+	
 	public String getCep() {
 		return cep;
 	}
@@ -42,6 +48,11 @@ public class User extends Entity {
 	public String getName() {
 		return name;
 	}
+	
+	public String getFirstName() {
+		return name.split(" ")[0]; 
+	}
+	
 	public void setName(String name) {
 		this.name = name;
 	}

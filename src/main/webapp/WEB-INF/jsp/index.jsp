@@ -1,3 +1,5 @@
+<%@ page import="java.util.List" %>
+<%@ page import="entity.Product" %>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -25,13 +27,15 @@
                 </div>
             </div>
             <ul class="row">
-            <% for(int i = 0; i < 5; i++){ %>
+            <jsp:useBean id="dao" class="dao.ProductDAO"/>
+            <% List<Product> products = dao.getAll();%>
+            <% for(Product product : products){ %>
                 <li class="col-lg-3 col-sm-12 col-md-6 col-xl-3" id="perfume">
-                    <a href="single.html" class="card">
+                    <a href="single?id=<%= product.getId() %>" class="card">
                         <img class="card-img-top" src="assets/img/perfume.jpg" alt="Card image cap">
                         <div class="card-body">
-                            <h5 class="card-title">Generic perfume</h5>
-                            <p class="card-text">R$ 220</p>
+                            <h5 class="card-title"><%= product.getName() %></h5>
+                            <p class="card-text"><%= product.getPrice() %></p>
                         </div>
                     </a>
                 </li>
