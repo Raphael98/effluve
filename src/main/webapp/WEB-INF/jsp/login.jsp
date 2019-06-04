@@ -41,7 +41,7 @@
                     <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                 </div>
                 <input type="submit" class="btn btn-dark" value="Entrar">
-                <a href="register.html">Cadastre-se</a>
+                <a href="userRegister">Cadastre-se</a>
             </form>
         </section>
     </main>

@@ -147,7 +147,7 @@ public class ProductDAO extends DAO {
 			for(int i = 0; i < brands.length; i++) {
 				brandField[i] = "brand_id = ?";
 			}
-			sql += genders == null ? "WHERE " : "";
+			sql += genders == null ? "WHERE " : " OR ";
 			sql += String.join(" OR ", brandField);
 		}
 		List<Product> products = new ArrayList<>();
