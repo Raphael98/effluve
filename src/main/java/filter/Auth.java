@@ -34,7 +34,8 @@ public class Auth implements Filter {
 			throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
-		if(!Session.isValid(req)){
+		Session session = new Session(req);
+		if(!session.isValid()){
 			req.setAttribute("failed", true);
 			req.getRequestDispatcher("WEB-INF/jsp/login.jsp").forward(req, res);
 		}else {

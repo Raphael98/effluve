@@ -13,7 +13,16 @@ public class User extends Entity {
 	private String email;
 	private String cep;
 	private String number;
+	private boolean admin;
 	
+	public boolean isAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
+	}
+
 	public User() {}
 	
 	public User(String email, String name, String password, String cep, String number) {

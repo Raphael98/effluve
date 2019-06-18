@@ -28,6 +28,7 @@ public class Login extends HttpServlet {
 			HttpSession session = req.getSession();
 			session.setAttribute("user", logged.getFirstName());
 			session.setAttribute("id", logged.getId());
+			session.setAttribute("admin", logged.isAdmin());
 			session.setMaxInactiveInterval(30*60);
 			req.getRequestDispatcher("WEB-INF/jsp/product/list-delete.jsp").forward(req, resp);
 		}else {

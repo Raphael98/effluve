@@ -37,6 +37,7 @@ public class UserDAO extends DAO{
 			user.setName(rs.getString("name"));
 			user.setCep(rs.getString("cep"));
 			user.setEmail(rs.getString("name"));
+			user.setAdmin(rs.getBoolean("admin"));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} 
