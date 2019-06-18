@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import dao.BrandDAO;
 import entity.Brand;
 
-@WebServlet("/updateBrand")
+@WebServlet(urlPatterns = {"/updateBrand"}, name = "updateBrand")
 public class Update extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

@@ -4,3 +4,4 @@
 .project
 src/main/java/factory/Credentials.java
 target/classes
+target/m2e-wtp/web-resources/META-INF/maven/com.poo/webapp/pom.properties

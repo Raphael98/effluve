@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import dao.UserDAO;
 import entity.User;
 
-@WebServlet("/userRegister")
+@WebServlet(urlPatterns = {"/userRegister"})
 public class Register extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

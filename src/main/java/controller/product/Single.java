@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import dao.ProductDAO;
 import entity.Product;
 
-@WebServlet("/single")
+@WebServlet(urlPatterns = {"/single"}, name = "single")
 public class Single extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

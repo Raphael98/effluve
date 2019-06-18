@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import dao.ProductDAO;
 import entity.Product;
 
-@WebServlet("/createProduct")
+@WebServlet(urlPatterns = {"/createProduct"}, name = "createProduct")
 public class Create extends HttpServlet {
 	
 	@Override

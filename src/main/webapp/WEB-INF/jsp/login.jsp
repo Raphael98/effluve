@@ -24,19 +24,24 @@
             </div>
         </section>
         <section class="row">
-            <form class="col-sm-8 offset-lg-2">
+            <form class="col-sm-8 offset-lg-2" method="POST" action="login">
                 <h1>Login</h1>
+                <% if(request.getAttribute("failed") != null){ %>
+	                <div class="alert alert-danger col-lg-12 col-md-12" role="alert">
+	  					Houve um erro ao realizar login
+					</div>
+				<% } %>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" class="form-control" id="email" aria-describedby="emailHelp"
+                    <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp"
                         placeholder="Enter email">
                 </div>
                 <div class="form-group">
                     <label for="password">Senha</label>
-                    <input type="password" class="form-control" id="password" placeholder="Password">
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                 </div>
                 <input type="submit" class="btn btn-dark" value="Entrar">
-                <a href="register.html">Cadastre-se</a>
+                <a href="userRegister">Cadastre-se</a>
             </form>
         </section>
     </main>

@@ -13,7 +13,7 @@ import org.omg.CosNaming.NamingContextPackage.NotFound;
 import dao.BrandDAO;
 import entity.Brand;
 
-@WebServlet("/deleteBrand")
+
 public class Delete extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

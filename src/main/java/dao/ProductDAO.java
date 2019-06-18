@@ -147,7 +147,7 @@ public class ProductDAO extends DAO {
 			for(int i = 0; i < brands.length; i++) {
 				brandField[i] = "brand_id = ?";
 			}
-			sql += genders == null ? "WHERE " : "";
+			sql += genders == null ? "WHERE " : " OR ";
 			sql += String.join(" OR ", brandField);
 		}
 		List<Product> products = new ArrayList<>();
@@ -164,6 +164,35 @@ public class ProductDAO extends DAO {
 					x += 1;
 				}
 			}
+			ResultSet rs = stmt.executeQuery();
+			while(rs.next()) {
+				Product product = new Product();
+				product.setId(rs.getInt("id"));
+				product.setName(rs.getString("name"));
+				product.setDescription(rs.getString("description"));
+				product.setPrice(Double.parseDouble(rs.getString("price")));
+				product.setBrand(new BrandDAO().get(Integer.parseInt(rs.getString("brand_id"))));
+				product.setGender(new GenderDAO().get(Integer.parseInt(rs.getString("gender_id"))));
+				products.add(product);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NotFound e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return products;
+	}
+	
+	public List<Product> search(String text) {
+		String sql = String.format("SELECT * FROM %s Where name like ?", this.table);
+		
+		List<Product> products = new ArrayList<>();
+		try(PreparedStatement stmt = conn.prepareStatement(sql)){
+			stmt.setString(1, "%"+text+"%");
 			ResultSet rs = stmt.executeQuery();
 			while(rs.next()) {
 				Product product = new Product();

@@ -1,4 +1,4 @@
-package controller.product;
+package controller.user;
 
 import java.io.IOException;
 
@@ -7,17 +7,16 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import dao.ProductDAO;
-
-@WebServlet(urlPatterns = {"/deleteProduct"}, name="deleteProduct")
-public class Delete extends HttpServlet {
-	
+@WebServlet(urlPatterns = {"/logout"})
+public class Logout extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		int id = Integer.parseInt(req.getParameter("id"));
-		new ProductDAO().delete(id);
-		req.setAttribute("deleted", true);
-		req.getRequestDispatcher("WEB-INF/jsp/product/list-delete.jsp").forward(req, resp);
+		HttpSession session = req.getSession(false);
+		if(session != null) {
+			session.invalidate();
+		}
+		req.getRequestDispatcher("WEB-INF/jsp/login.jsp").forward(req,resp);
 	}
 }
