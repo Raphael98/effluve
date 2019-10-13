@@ -10,9 +10,5 @@ import factory.ConnectionFactory;
 
 public abstract class DAO {
 	protected String table;
-	protected Connection conn;
-	
-	public DAO() {
-		this.conn = new ConnectionFactory().getConnection();
-	}
+	protected static Connection conn = new ConnectionFactory().getConnection();
 }

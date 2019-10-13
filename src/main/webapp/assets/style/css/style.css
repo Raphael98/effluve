@@ -91,3 +91,12 @@ i {
 .-slight-margin {
   margin: 0 10px;
 }
+
+.invalidated input {
+	border: red 1px solid;
+}
+
+.invalidated::after{
+	content: "Este campo é obrigatório";
+}
+

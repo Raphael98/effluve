@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 import dao.UserDAO;
 import entity.User;
 
-@WebServlet(urlPatterns = {"/login"})
+@WebServlet(name = "login", urlPatterns = {"/login"})
 public class Login extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -30,7 +30,7 @@ public class Login extends HttpServlet {
 			session.setAttribute("id", logged.getId());
 			session.setAttribute("admin", logged.isAdmin());
 			session.setMaxInactiveInterval(30*60);
-			req.getRequestDispatcher("WEB-INF/jsp/product/list-delete.jsp").forward(req, resp);
+			req.getRequestDispatcher("WEB-INF/jsp/index.jsp").forward(req, resp);
 		}else {
 			req.setAttribute("failed", true);
 			req.getRequestDispatcher("WEB-INF/jsp/login.jsp").forward(req, resp);

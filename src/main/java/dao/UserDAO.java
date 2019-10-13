@@ -53,6 +53,7 @@ public class UserDAO extends DAO{
 			if(rs.next()) {
 				user.setId(rs.getInt("id"));
 				user.setName(rs.getString("name"));
+				user.setAdmin(rs.getInt("admin") == 1);
 				return user;
 			}
 		} catch (SQLException e) {

@@ -21,7 +21,7 @@ public class Create extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		Brand brand = new Brand(req.getParameter("name"), req.getParameter("description"));
+		Brand brand = new Brand(req.getParameter("name"));
 		new BrandDAO().add(brand);
 		req.setAttribute("success", true);
 		req.getRequestDispatcher("/WEB-INF/jsp/brand/new.jsp").forward(req, resp);

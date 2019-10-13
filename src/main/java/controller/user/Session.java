@@ -17,6 +17,6 @@ public class Session {
 	
 	public boolean isAdmin() {
 		HttpSession session = this.req.getSession();
-		return !(session != null && session.getAttribute("user") == null && (boolean) session.getAttribute("admin") == true);
+		return session != null && (boolean) session.getAttribute("admin") == true;
 	}
 }

@@ -1,14 +1,13 @@
 package entity;
 
 public class Brand extends Entity{
+	protected String table = "brands";
 	private String name;
-	private String description;
 
 	public Brand() {}
 	
-	public Brand(String name, String description) {
+	public Brand(String name) {
 		this.name = name;
-		this.description = description;
 	}
 	
 	public String getName() {
@@ -16,11 +15,5 @@ public class Brand extends Entity{
 	}
 	public void setName(String name) {
 		this.name = name;
-	}
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
 	}
 }

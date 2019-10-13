@@ -42,7 +42,6 @@
                     <tr>
                         <th scope="col">ID</th>
                         <th scope="col">Nome</th>
-                        <th scope="col">Descrição</th>
                         <th scope="col">Editar</th>
                         <!-- <th scope="col">Excluir</th> -->
                     </tr>
@@ -54,7 +53,6 @@
 	                    <tr>
 	                        <th scope="row">1</th>
 	                        <td><%= brand.getName() %></td>
-	                        <td><%= brand.getDescription() %></td>
 	                        <td><a href="updateBrand?id=<%= brand.getId() %>" class="crud-icon update-link"><i class="fa fa-edit"></i></a></td>
 	                        <!-- <td><a href="deleteBrand?id=<%= brand.getId() %>" onclick="return confirm('Tem certeza que deseja deletar?')" class="crud-icon delete-link"><i class="fa fa-times"></i></a></td> -->
 	                    </tr>

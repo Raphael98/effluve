@@ -15,8 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import controller.user.Session;
 
-@WebFilter(asyncSupported=true, servletNames = {"productManager","createProduct","createBrand", 
-		"brandManager", "updateBrand", "createProduct", "deleteProduct", "single", "updateProduct"})
+@WebFilter(asyncSupported=true, servletNames = {"updateBrand", "createProduct", "deleteProduct", "updateProduct"})
 public class Auth implements Filter {
 
 	@Override

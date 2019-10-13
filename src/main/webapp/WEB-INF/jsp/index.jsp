@@ -13,7 +13,7 @@
     <title>Effluve: Home</title>
 </head>
 
-<body>
+<body>	
     <nav id="menu">
        <!-- filled dynamically by jQuery-->
     </nav>

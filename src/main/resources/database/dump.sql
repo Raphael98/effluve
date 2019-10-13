@@ -11,8 +11,7 @@ CREATE TABLE users (
 
 CREATE TABLE brands (
 	id INT PRIMARY KEY AUTO_INCREMENT,
-	name VARCHAR(60) NOT NULL,
-	description TEXT
+	name VARCHAR(60) NOT NULL
 );
 
 CREATE TABLE genders (
@@ -47,3 +46,15 @@ CREATE TABLE orders(
 );
 
 INSERT INTO genders (name) VALUES ('MASCULINO'), ('FEMININO'), ('UNISEX');
+INSERT INTO brands (name) VALUES ('Paco Rabanne'), ('Azzaro'), ('Carolina Herrera');
+INSERT INTO users (name, email, password, cep, number, admin)
+VALUES ('Adm', 'adm@effluve.com', 'password','03677011',55,1),
+('customer', 'customer@gmail.com', 'password','03477012',23,0);
+INSERT INTO products (name, price, brand_id, gender_id, description) VALUES 
+('1 Million',400,1,1,'Lorem ipsum dolor sit amet consectetur adipiscing elit senectus, aliquam diam dictum nisi habitant dignissim pulvinar, facilisi ac taciti lobortis arcu massa fames fusce'),
+('Olympéa Legend',278.99, 1, 2,'Lorem ipsum dolor sit amet consectetur adipiscing elit senectus, aliquam diam dictum nisi habitant dignissim pulvinar, facilisi ac taciti lobortis arcu massa fames fusce'),
+('Lady Million',223.89, 1, 2,'Lorem ipsum dolor sit amet consectetur adipiscing elit senectus, aliquam diam dictum nisi habitant dignissim pulvinar, facilisi ac taciti lobortis arcu massa fames fusce'),
+('Pour Homme',449.89, 2, 1,'Lorem ipsum dolor sit amet consectetur adipiscing elit senectus, aliquam diam dictum nisi habitant dignissim pulvinar, facilisi ac taciti lobortis arcu massa fames fusce'),
+('Mademoiselle',163.89, 2, 2,'Lorem ipsum dolor sit amet consectetur adipiscing elit senectus, aliquam diam dictum nisi habitant dignissim pulvinar, facilisi ac taciti lobortis arcu massa fames fusce'),
+('Good Girl',500.89, 3, 2,'Lorem ipsum dolor sit amet consectetur adipiscing elit senectus, aliquam diam dictum nisi habitant dignissim pulvinar, facilisi ac taciti lobortis arcu massa fames fusce'),
+('212 VIP', 314.89, 3, 1,'Lorem ipsum dolor sit amet consectetur adipiscing elit senectus, aliquam diam dictum nisi habitant dignissim pulvinar, facilisi ac taciti lobortis arcu massa fames fusce');

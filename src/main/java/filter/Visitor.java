@@ -13,10 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.user.Session;
-
-@WebFilter(asyncSupported=true, servletNames = {"productManager", "createProduct","createBrand", "brandManager"})
-public class Admin implements Filter {
-
+@WebFilter(asyncSupported=true, servletNames = {"login"})
+public class Visitor implements Filter{
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
 		
@@ -33,11 +31,11 @@ public class Admin implements Filter {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
 		Session session = new Session(req);
-		if(!session.isAdmin()){
+		if(session.isValid()){
 			req.setAttribute("failed", true);
 			req.getRequestDispatcher("WEB-INF/jsp/index.jsp").forward(req, res);
 		}else {
-			chain.doFilter(request, response);		
+			chain.doFilter(request, response);			
 		}
 	}
 }

@@ -2,6 +2,7 @@
 <%@ page import="entity.Brand" %>
 <%@ page import="entity.Gender" %>
 <%@ page import="entity.Product" %>
+<%@ page import="controller.user.Session" %>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -29,6 +30,7 @@
         </section>
         <section class="row">
         <%Product product = (Product) request.getAttribute("product");%>
+        <% Session mySession = new Session(request); %>
             <figure class="col-lg-4 col-xl-4">
                 <img src="assets/img/perfume.jpg">
             </figure>
@@ -38,11 +40,13 @@
                 <p>
                     <spa class="price">R$ <%= product.getPrice() %></spa>
                 </p>
-                <form method="POST" action="orders">
-                	<input type="hidden" name="product" value="<%= product.getId() %>">
-                	<input type="hidden" name="user" value="<%= session.getAttribute("id") %>">
-                	<p><button class="btn btn-dark icon-btn" style="font-size:1.8rem"><i class="fa fa-cart-plus white"></i></button></p>
-                </form>
+                <%if(mySession.isValid()){ %>
+	                <form method="POST" action="orders">
+	                	<input type="hidden" name="product" value="<%= product.getId() %>">
+	                	<input type="hidden" name="user" value="<%= session.getAttribute("id") %>">
+	                	<p><button class="btn btn-dark icon-btn" style="font-size:1.8rem"><i class="fa fa-cart-plus white"></i></button></p>
+	                </form>
+                <% } %>
             </div>
             <div class="col-lg-4 col-xl-4">
                     <h2>Descrição</h2>
@@ -52,7 +56,7 @@
                 </div>
         </section>
     </main>
-    <script src="assets/js/popper.min.js"></script>
+    <script src="/assets/js/popper.min.js"></script>
     <script src="assets/js/jquery.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/main.js"></script>

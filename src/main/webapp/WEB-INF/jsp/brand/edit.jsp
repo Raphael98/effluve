@@ -33,15 +33,11 @@
             <form class="col-xl-8 offset-xl-2" method="POST" action="updateBrand">
             	<input type="hidden" name="id" value="<%= brand.getId()%>">
                 <h1>Novo marca</h1>
-                <div class="row form-group">
+                <div class="row form-group required">
                     <div class="col">
                         <label for="name">Nome</label>
                         <input type="text" id="name" name="name" value="<%= brand.getName() %>" class="form-control">
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="description">Descrição<small> (opcional)</small></label>
-                    <textarea id="description" class="form-control" name="description"><%= brand.getDescription() %></textarea>
                 </div>
                 <input type="submit" class="btn btn-dark" value="Cadastrar">
                 <a href="list-delete-product.html" class="-slight-margin">Voltar</a>

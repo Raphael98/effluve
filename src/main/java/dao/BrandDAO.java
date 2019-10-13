@@ -15,10 +15,9 @@ public class BrandDAO extends DAO {
 	public String table = "brands";
 	
 	public void add(Brand brand) {
-		String sql = String.format("INSERT INTO %s (name, description) values (?,?)", this.table);
+		String sql = String.format("INSERT INTO %s (name) values (?)", this.table);
 		try(PreparedStatement stmt = conn.prepareStatement(sql)){
 			stmt.setString(1, brand.getName());
-			stmt.setString(2, brand.getDescription());
 			stmt.execute();
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -35,7 +34,6 @@ public class BrandDAO extends DAO {
 			}
 			brand.setId(rs.getInt("id"));
 			brand.setName(rs.getString("name"));
-			brand.setDescription(rs.getString("Description"));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} 
@@ -51,7 +49,6 @@ public class BrandDAO extends DAO {
 				Brand brand = new Brand();
 				brand.setId(rs.getInt("id"));
 				brand.setName(rs.getString("name"));
-				brand.setDescription(rs.getString("Description"));
 				brands.add(brand);
 			}
 		} catch (SQLException e) {
@@ -71,11 +68,10 @@ public class BrandDAO extends DAO {
 	}
 	
 	public void update(Brand brand) {
-		String sql = String.format("UPDATE %s set name = ?, description = ? where id = ?;", this.table);
+		String sql = String.format("UPDATE %s set name = ? where id = ?;", this.table);
 		try(PreparedStatement stmt = this.conn.prepareStatement(sql)){
 			stmt.setString(1, brand.getName());
-			stmt.setString(2, brand.getDescription());
-			stmt.setInt(3, brand.getId());
+			stmt.setInt(2, brand.getId());
 			stmt.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
